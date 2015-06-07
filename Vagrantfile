@@ -18,4 +18,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Forward SSH keys to the Guest VM
     config.ssh.forward_agent = true
 
+    # Add our role path in
+    config.vm.synced_folder "", "/etc/ansible/roles/ansible-role-redshift"
 end
