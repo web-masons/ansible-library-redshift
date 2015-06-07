@@ -2,6 +2,24 @@
 __pycache__/
 *.py[cod]
 
+# JetBrains project folders
+.idea/
+
+# Vagrant
+.vagrant/
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
 # C extensions
 *.so
 
