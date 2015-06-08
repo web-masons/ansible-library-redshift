@@ -1,9 +1,15 @@
 # Ansible Role: Redshift
+[![Build Status](https://secure.travis-ci.org/oakensoul/ansible-role-redshift.png)](http://travis-ci.org/oakensoul/ansible-role-redshift)
 
 Allows management of a running Amazon Redshift Cluster.
 
 I'll apologize now as this is my first venture into creating an Ansible Role. Feedback, Issues, and pull requests are
 more than welcome.
+
+## Thank  You
+I wanted to add a thank you to the Ansible community for providing many examples of standards to build off of. I also
+specifically want to call out / thank [geerlingguy](http://github.com/geerlingguy) as I use a number of his roles from
+Ansible Galaxy and I've been reading and learning a lot from his roles on Github.
 
 ## Requirements
 
