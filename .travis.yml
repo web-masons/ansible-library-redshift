@@ -4,8 +4,7 @@ python:
   - "2.7"
 
 env:
-  - SITE=test.yml
-  - ANSIBLE_LIBRARY=${ANSIBLE_LIBRARY}:~/library/redshift
+  - SITE=test.yml ANSIBLE_LIBRARY=$ANSIBLE_LIBRARY:~/library/redshift
 
 before_install:
   - sudo apt-get update -qq
