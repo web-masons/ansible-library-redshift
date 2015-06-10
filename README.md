@@ -35,6 +35,11 @@ users too:
       roles:
          - { role: username.rolename, x: 42 }
 
+```bash
+$ cd \vagrant
+$ ansible-playbook tests/test.yml --inventory=tests/inventory --connection=local -M library/redshift/
+```
+
 # License
 
 (c) 2015, Robert G. Johnson Jr. <rjohnson@oakensoul.com>, Apache Version 2.0

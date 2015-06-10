@@ -1,5 +1,19 @@
+##
+# Example Ansible playbook that uses the PostgreSQL module.
+#
+# This installs PostgreSQL on an Ubuntu system, creates a database called
+# "myapp" and a user called "django" with password "mysupersecretpassword"
+# with access to the "myapp" database.
+#
+# ansible-playbook test.yml --inventory=inventory --connection=local
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - ansible-role-redshift
+- hosts: all
+
+  vars:
+
+  tasks:
+  - name: redshift_user
+    redshift_user:
+      user={{item}}
+    with_items:
+      - oakensoul
