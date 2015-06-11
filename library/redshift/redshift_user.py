@@ -20,23 +20,29 @@ EXAMPLES = '''
 
 '''
 
+def check_if_system_state_would_be_changed():
+    return False;
+
 
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            user=dict(required=True),
-
-            # Flags
             state=dict(default="present", choices=["absent", "present"]),
+            user=dict(required=True),
             allow_user_delete_fail=dict(type='bool', default='no')
         ),
+
         supports_check_mode=True
     )
 
     changed = False
 
-    module.exit_json(changed=changed, user=module.params['user'])
+    if module.check_mode:
+        # Check if any changes would be made but don't actually make those changes
+        module.exit_json(changed=check_if_system_state_would_be_changed())
 
+    module.exit_json(changed=changed, user=module.params['user'])
+    # module.fail_json(msg="Something fatal happened")
 
 # Pseudo-import the AnsibleModule helper class
 from ansible.module_utils.basic import *
