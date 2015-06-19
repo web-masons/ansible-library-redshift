@@ -12,6 +12,16 @@ description:
   - Create, Alter, Delete users in an Amazon Redshift cluster.
 version_added: "0.1"
 
+When in check-mode, for the purposes of testing, the following users will end up with the expected results:
+  - test-redshift-user
+    state=present
+    password=abcD1234
+
+  - missing-redshift-user
+    state=absent
+    password=hkyz7894
+
+
 requirements: [ psycopg2 ]
 author: Robert G. Johnson Jr.
 '''
@@ -19,6 +29,20 @@ author: Robert G. Johnson Jr.
 EXAMPLES = '''
 
 '''
+
+try:
+    import psycopg2
+except ImportError:
+    psycopg2 = None
+
+def connect(host_name, host_user, host_password, host_port, database):
+    conn_string = "host='%s' user='%s' password='%s' port='%s' dbname='%s'" % (
+        host_name, host_user, host_password, host_port, database
+    )
+
+    db_connection = psycopg2.connect(conn_string)
+    return db_connection
+
 
 def check_if_system_state_would_be_changed():
     return False;
@@ -34,6 +58,19 @@ def main():
 
         supports_check_mode=True
     )
+
+    if not psycopg2:
+        module.fail_json(msg="The python psycopg2 module is required to connect to Redshift")
+
+    try:
+        redshift = connect(module.params['host_name'],
+                           module.params['host_user'],
+                           module.params['host_password'],
+                           module.params['host_port'],
+                           module.params['host_database'])
+        cursor = redshift.cursor()
+    except Exception, e:
+        module.fail_json(msg="Unable to connect to Redshift database: %s" % e)
 
     changed = False
 

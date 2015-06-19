@@ -5,15 +5,35 @@
 # "myapp" and a user called "django" with password "mysupersecretpassword"
 # with access to the "myapp" database.
 #
-# ansible-playbook test.yml --inventory=inventory --connection=local
+# ansible-playbook test.yml --localhost.ini=localhost.ini --connection=local
 ---
 - hosts: all
 
   vars:
 
   tasks:
-  - name: redshift_user
-    redshift_user:
-      user={{item}}
-    with_items:
-      - oakensoul
+  - name: launch ansible cloudformation example
+    cloudformation:
+      stack_name: "ansible-library-redshift"
+      state: "present"
+      region: "us-east-1"
+      disable_rollback: true
+      template: "files/redshift-cloud-formation.json"
+      template_parameters:
+        MasterUsername: "gatekeeper"
+        MasterUserPassword: "P1ckl3s&Ch33z3"
+      tags:
+        Stack: "travisci-ansible-library-redshift"
+
+#  - name: redshift_user
+#    redshift_user:
+#      user={{item}}
+#    with_items:
+#      - oakensoul
+
+  # Removal example
+#  - name: tear down old deployment
+#    cloudformation:
+#      stack_name: "ansible-cloudformation-old"
+#      state: "absent"
+
