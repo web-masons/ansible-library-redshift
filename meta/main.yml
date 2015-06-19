@@ -2,7 +2,7 @@
 galaxy_info:
   author: oakensoul
   description: Amazon Redshift Management
-  company: "Carbonite, Inc."
+  company: "Web Masons"
   license: license (Apache)
   min_ansible_version: 1.4
   #
