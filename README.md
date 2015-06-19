@@ -1,10 +1,12 @@
 # Ansible Role: Redshift
 [![Build Status](https://secure.travis-ci.org/oakensoul/ansible-role-redshift.png)](http://travis-ci.org/oakensoul/ansible-role-redshift)
 
-Allows management of a running Amazon Redshift Cluster.
+This project creates a handful of libraries for managing Redshift users using Ansible similar to the PostgreSQL modules
+in Ansible.
 
-I'll apologize now as this is my first venture into creating an Ansible Role. Feedback, Issues, and pull requests are
+I'll apologize now as this is my first venture into creating Ansible modules. Feedback, Issues, and pull requests are
 more than welcome.
+
 
 ## Thank  You
 I wanted to add a thank you to the Ansible community for providing many examples of standards to build off of. I also
@@ -34,6 +36,11 @@ users too:
     - hosts: redshift
       roles:
          - { role: username.rolename, x: 42 }
+
+```bash
+$ cd \vagrant
+$ ansible-playbook tests/test.yml --inventory=tests/inventory --connection=local -M library/redshift/
+```
 
 # License
 
