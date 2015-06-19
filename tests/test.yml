@@ -12,18 +12,6 @@
   vars:
 
   tasks:
-  - name: launch ansible cloudformation example
-    cloudformation:
-      stack_name: "ansible-library-redshift"
-      state: "present"
-      region: "us-east-1"
-      disable_rollback: true
-      template: "files/redshift-cloud-formation.json"
-      template_parameters:
-        MasterUsername: "gatekeeper"
-        MasterUserPassword: "P1ckl3s&Ch33z3"
-      tags:
-        Stack: "travisci-ansible-library-redshift"
 
 #  - name: redshift_user
 #    redshift_user:
